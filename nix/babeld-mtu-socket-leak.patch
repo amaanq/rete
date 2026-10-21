@@ -1,0 +1,15 @@
+--- a/kernel_socket.c
++++ b/kernel_socket.c
+@@ -355,10 +355,9 @@
+     memset(&req, 0, sizeof(req));
+     strncpy(req.ifr_name, ifname, sizeof(req.ifr_name));
+     rc = ioctl(s, SIOCGIFMTU, &req);
+-    if(rc < 0) {
+-        close(s);
++    close(s);
++    if(rc < 0)
+         return -1;
+-    }
+ 
+     return req.ifr_mtu;
+ }

@@ -1,0 +1,41 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792506237,
+        "narHash": "sha256-hVMDyAXU0kxRuG3GygbZkzf5x+aBNEC0NYEJ6KwHtD4=",
+        "rev": "5adc50831c259f87faeb09ddf930d43597197473",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1097770.5adc50831c25/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz"
+      }
+    },
+    "nuff": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790963828,
+        "narHash": "sha256-8q1WpnohPHYwkAzGYV+X9qtq9lPMXAOYPvE1enClZPw=",
+        "owner": "manic-systems",
+        "repo": "nuff",
+        "rev": "a99fadda6130d62f92e87963218740c2455a2c70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "manic-systems",
+        "repo": "nuff",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "nuff": "nuff"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

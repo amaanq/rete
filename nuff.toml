@@ -1,0 +1,6 @@
+[formatter.nix]
+command = "nixfmt"
+includes = ["**/*.nix"]
+mode = "files"
+options = ["--indent=3"]
+check_options = ["--indent=3", "--check"]

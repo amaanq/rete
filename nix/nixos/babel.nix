@@ -21,6 +21,10 @@ let
    nu = "${getExe pkgs.nushell} --no-config-file";
    interfaces = attrNames cfg.links;
 
+   babeld = pkgs.babeld.overrideAttrs (old: {
+      patches = old.patches or [ ] ++ [ ../babeld-quiet-endpointless-peer.patch ];
+   });
+
    hotplug = concatStringsSep " " (
       [
          nu
@@ -35,6 +39,7 @@ let
 
    babelConfig = pkgs.writeText "rete-babeld.conf" ''
       skip-kernel-setup true
+      link-detect true
       local-path /run/rete/babeld.sock
       default hello-interval 1 key rete
       ${concatMapStrings (name: ''
@@ -72,7 +77,7 @@ in
          ];
          wantedBy = [ "multi-user.target" ];
          restartTriggers = [ cfg.babelKeyFile ] ++ optional plainLan cfg.lanKeyFile;
-         path = [ pkgs.babeld ];
+         path = [ babeld ];
 
          serviceConfig = {
             ExecStart = "${nu} ${./babeld.nu} ${babelConfig}${optionalString plainLan " --plain-lan"}";

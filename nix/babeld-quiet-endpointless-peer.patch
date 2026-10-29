@@ -1,0 +1,19 @@
+--- a/message.c
++++ b/message.c
+@@ -23,6 +23,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <stdio.h>
++#include <errno.h>
+ #include <assert.h>
+ #include <sys/time.h>
+ #include <netinet/in.h>
+@@ -1176,7 +1177,7 @@
+                         buf->buf, end,
+                         (struct sockaddr*)&buf->sin6,
+                         sizeof(buf->sin6), probe);
+-        if(rc < 0)
++        if(rc < 0 && errno != EDESTADDRREQ)
+             perror("send");
+     }
+     VALGRIND_MAKE_MEM_UNDEFINED(buf->buf, buf->size);

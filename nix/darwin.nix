@@ -25,7 +25,10 @@ let
 
    # Every SIOCGIFMTU leaks a socket, and at launchd's 256 fd limit babeld goes silent.
    babeld = pkgs.babeld.overrideAttrs (old: {
-      patches = old.patches or [ ] ++ [ ./babeld-mtu-socket-leak.patch ];
+      patches = old.patches or [ ] ++ [
+         ./babeld-mtu-socket-leak.patch
+         ./babeld-quiet-endpointless-peer.patch
+      ];
    });
 
    learnedLinks = filterAttrs (_: link: link.learned) cfg.links;
